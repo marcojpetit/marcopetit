@@ -72,16 +72,19 @@
             </div>
             <div class="modal-body">
                 <!--Form Start-->
-                <form method="POST"> {% csrf_token %} <div class="row">
-                    <div class="col-md-12 mb-50">
-                        <span class="input">
-                            {{formulario.nombre}}
-                            <label class="input__label">{{formulario.nombre.label_tag}}</label>
-                        </span>
-                        {{formulario.nombre.errors}}
-                        <div class="modal-footer">
-                            <button type="submit" class="btn-main">Crear Categoría</button>
-                            <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                <form method="POST"> 
+                    {% csrf_token %} 
+                    <div class="row">
+                        <div class="col-md-12 mb-50">
+                            <span class="input">
+                                {{formulario.nombre}}
+                                <label class="input__label">{{formulario.nombre.label_tag}}</label>
+                            </span>
+                            {{formulario.nombre.errors}}
+                            <div class="modal-footer">
+                                <button type="submit" class="btn-main">Crear Categoría</button>
+                                <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                            </div>
                         </div>
                     </div>
                 </form>
