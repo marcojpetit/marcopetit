@@ -25,21 +25,8 @@
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     </head>
     <body>
-        <!--Preloader Start-->
-        <div class="preloader">
-            <div class="loader">
-                <!--Your Name-->
-                <h4>Marco Petit</h4>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <!--Preloader End-->
+        {% block preloader%}
+        {% endblock preloader%}
         <div id="page">
             <!--Header Start-->
             <header>
@@ -61,7 +48,7 @@
                                 <li><a href={% url "inicio" %} class="pt-link active"><span class="nav-menu-icon"><i class="lnr lnr-home"></i></span>Inicio</a></li>
                                 <li><a href={% url "sobre_mi" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>Sobre mi</a></li>
                                 <li><a href={% url "podcast_punto_alternativo" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-mic"></i></span>Podcast</a></li>
-                                <li><a href={% url "blog" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Mis escritos</a></li>
+                                <li><a href={% url "blog" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li>
                                 <li><a href={% url "cv" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-license"></i></span>Currículum</a></li>
                                 <li><a href={% url "contacto" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-envelope"></i></span>Contacto</a></li>
                             </ul>
@@ -89,7 +76,7 @@
 
 
             <!--Main Start-->
-            <div id="main" class="site-main">
+            <div id="main" class="site-main">                
                 {% block section %}
                 <h1>Section</h1>
                 {% endblock section%}        

@@ -32,9 +32,31 @@
         12. Mobile Responsive Css
 **************************************/
 
-/**/
-#home{
-    background-image: url('img/background/home-bg.jpg')
+.boton-crear-menu {
+    padding-bottom: 1em !important;
+    text-align: right !important;
+}
+
+.crear-editar-modal {
+    background-color: #2C2D2F !important;
+    border-color: #fff;
+}
+
+.crear-editar-modal button span {
+    color: #FFF !important;
+}
+
+.crear-editar-modal .row {
+    padding-top: 2em !important;
+}
+
+.crear-editar-modal .row .modal-footer {
+    width: 100% !important;
+}
+
+.crear-editar-modal .btn-main:hover,
+.crear-editar-modal .btn-main:focus {
+    color: #fff;
 }
 
 /*============ 1. Body and Core Css ============*/

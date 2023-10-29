@@ -395,3 +395,13 @@ function showAlertBox(response, message) {
     $alContainer.fadeIn(300).delay(4000).fadeOut(400);
 }
 
+/********** borrar formularios **********/
+function borrarFormulario(){
+    $(document).ready(function() {
+        $('#limpiar').click(function() {
+          $('input[type="text"]').val('');
+        });
+      });
+}
+
+
