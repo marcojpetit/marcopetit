@@ -1,0 +1,60 @@
+{% extends "blog/blog.html" %}
+
+{% block title %}
+<title>Marco Petit :: Entradas ::</title>
+{% endblock title %}
+
+
+{% block sub-section %}
+<!--blog sub-section -->
+<div class="page-heading">
+    <span class="icon">
+        <i class="lnr lnr-file-add"></i>
+    </span>
+    <h2>Blog</h2>
+</div>
+<!--Form Row-->
+<div class="row mb-70">
+    <div class="col-lg-8  offset-lg-2">
+        <div class="subheading">
+            <h3>Listado de entradas</h3>
+        </div>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="etiqueta_a_buscar" placeholder="Entradas" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">buscar</button>
+        </form> 
+        {% if listado_entradas %} 
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Titulo</th>
+                        <th colspan="2" scope="col" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider"> 
+                    {% for entrada in listado_entradas %} 
+                        <tr>
+                            <th scope="row">{{entrada.id}}</th>
+                            <td>{{entrada.titulo | capfirst}}</td>
+                            <td class="text-center">
+                                <a href="#">
+                                    <i class="lnr lnr-pencil"></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="#">
+                                    <i class="lnr lnr-trash"></i>
+                                </a>
+                            </td>
+                        </tr> 
+                    {% endfor %} 
+                </tbody>
+            </table> 
+        {% else %} 
+            <div class="alert alert-warning" role="alert"> No se encontraron entradas</div> 
+        {% endif %}
+    </div>
+</div>
+<!--end blog sub-section --> 
+{% endblock sub-section %}

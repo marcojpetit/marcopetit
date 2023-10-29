@@ -3,3 +3,53 @@
 {% block title %}
 <title>Marco Petit :: Crear entrada ::</title>
 {% endblock title %}
+
+{% block sub-section %}
+<!--blog sub-section -->
+<div class="page-heading">
+    <span class="icon">
+        <i class="lnr lnr-file-add"></i>
+    </span>
+    <h2>Blog</h2>
+</div>
+<!--Form Row-->
+<div class="row mb-70">
+    <div class="col-lg-8  offset-lg-2">
+        <div class="subheading">
+            <h3>Crear entrada</h3>
+        </div>
+        <!--Form Start-->
+        <form method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %} 
+            <div class="col-md-12 mb-50">
+                <div style="padding-top: 1em;">
+                    <span class="input">
+                        {{formulario.titulo}}
+                        <label class="input__label">{{formulario.titulo.label_tag}}</label>
+                    </span>
+                    <div class="alert-container col-md-12">{{formulario.titulo.errors}}</div>
+                </div>
+                <div style="padding-top: 2em;">
+                    <span class="input">
+                        {{formulario.contenido}}
+                        <label class="input__label">{{formulario.contenido.label_tag}}</label>
+                    </span>
+                    <div class="alert-container col-md-12">{{formulario.contenido.errors}}</div>
+                </div>
+
+                <span class="input" style="padding-top: 1em;">
+                    {{formulario.imagen_portada}}
+                </span>
+                <div class="alert-container col-md-12">{{formulario.imagen_portada.errors}}</div>
+            </div>
+            
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn-main">Crear Entrada</button>
+                <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>
+            </div>
+        </form>
+        <!--Form End-->
+    </div>
+</div>
+<!--end blog sub-section --> 
+{% endblock sub-section %}

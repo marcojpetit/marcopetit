@@ -1,49 +1,87 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+{% load static %}
 
 {% block title %}
-<title>Marco Petit :: Blog ::</title>
-{% endblock title %}
+<title>Marco Petit :: Blog ::</title> 
+{% endblock title %} 
 
 {% block section %}
 <!--Crear categoria Section Start-->
-<section class="contact-section pt-page">
-    <div class="section-container">
-        <!--Page Heading-->
-        <div class="page-heading">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                      <a class="nav-link" href={% url "blog" %}>Blog <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href={% url "crear_entrada" %}>Crear entrada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href={% url "categorias" %}>Categorías</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url "etiquetas" %}>Etiquetas</a>
-                      </li>
-                  </ul>
-                </div>
-              </nav>
+<section id="blog" class="blog-section pt-page">
+  <div class="section-container">
+    <!--Page Heading-->
+    <div class="page-heading">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active"><a class="nav-link" href={% url "blog" %}>Blog <span class="sr-only">(current)</span></a></li>
+            <li class="nav-item"><a class="nav-link" href={% url "crear_entrada" %}>+ Crear entrada</a></li>
+            <li class="nav-item"><a class="nav-link" href={% url "entradas" %}>Entradas</a></li>
+            <li class="nav-item"><a class="nav-link" href={% url "categorias" %}>Categorías</a></li>
+            <li class="nav-item"><a class="nav-link" href={% url "etiquetas" %}>Etiquetas</a></li>
+          </ul>
         </div>
+      </nav>
+    </div> 
+    {% block sub-section %}
+    <!--blog sub-section -->
+    <div class="page-heading">
+      <span class="icon"><i class="lnr lnr-file-add"></i></span>
+      <h2>Mis escritos</h2>
+    </div>
+    <div class="row blogs-masonry">
+      
+      <div class="col-lg-4 col-sm-6">
+        <a href="#" class="blog-item">
+          <div class="blog-image">
+            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
+          </div>
+          <div class="blog-content">
+            <span class="cat">Web Design</span>
+            <h4 class="blog-title">Best Way to Design</h4>
+            <div class="blog-date">August 15, 2018</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="#" class="blog-item">
+          <div class="blog-image">
+            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
+          </div>
+          <div class="blog-content">
+            <span class="cat">Web Design</span>
+            <h4 class="blog-title">Best Way to Design</h4>
+            <div class="blog-date">August 15, 2018</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="#" class="blog-item">
+          <div class="blog-image">
+            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
+          </div>
+          <div class="blog-content">
+            <span class="cat">Web Design</span>
+            <h4 class="blog-title">Best Way to Design</h4>
+            <div class="blog-date">August 15, 2018</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="#" class="blog-item">
+          <div class="blog-image">
+            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
+          </div>
+          <div class="blog-content">
+            <span class="cat">Web Design</span>
+            <h4 class="blog-title">Best Way to Design</h4>
+            <div class="blog-date">August 15, 2018</div>
+          </div>
+        </a>
+      </div>
 
-        {% block sub-section %}
-        <!--blog sub-section -->
-        <div class="page-heading">
-            <span class="icon">
-                <i class="lnr lnr-file-add"></i>
-            </span>
-            <h2>Blog</h2>
-            
-
-
-
-        </div>
-        <!--end blog sub-section -->
-        {% endblock sub-section %}
+    <!--end blog sub-section --> 
+    {% endblock sub-section %}
 </section>
-<!--Crear categoria Section End--> 
+<!--Crear categoria Section End-->
 {% endblock section %}

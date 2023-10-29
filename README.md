@@ -8,6 +8,7 @@ El Blog contiene las principales funcioanlidades:
 - herencia de templates y archivos estáticos desde la carpeta principal del proyecto hacia las apps específicas
 - formularios de Django para guardar en BD 
 - formularios de HTML para buscar
+- subir imagenes desde formulario (https://www.youtube.com/watch?v=G0l1XBV15yw)
 
 Nota: también cuenta con Diagrama entidad relacion en un xml que se puede abrir en draw.io
 

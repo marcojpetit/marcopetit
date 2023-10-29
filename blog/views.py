@@ -1,12 +1,30 @@
 from django.shortcuts import render, redirect
-from blog.models import Categoria, Etiqueta
-from blog.forms import CrearCategoriaFormulario, CrearEtiquetaFormulario
+from datetime import datetime
+from blog.models import Entrada, Categoria, Etiqueta
+from blog.forms import CrearEntradaFormulario, CrearCategoriaFormulario, CrearEtiquetaFormulario
 
 def blog (request):
     return render(request, 'blog/blog.html', {})
 
 def crear_entrada (request):
-    return render(request, 'blog/crear_entrada.html', {})
+
+    if request.method == 'POST': #si viene por POST crea el formulario con los datos
+        formulario = CrearEntradaFormulario(request.POST, request.FILES)
+        if formulario.is_valid(): #si el formulario tiene datos validos, crea y redirecciona a categorias
+            titulo = formulario.cleaned_data.get('titulo')
+            contenido = formulario.cleaned_data.get('contenido')
+            imagen_portada = formulario.cleaned_data.get('imagen_portada')
+            entrada = Entrada(id_categoria=1, titulo=titulo.lower(), contenido=contenido, id_autor=1, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
+            entrada.save()
+            return redirect('entradas')
+        else:#si el formulario no tiene datos validos, regresa al formulario y muestra los errores
+            return render(request, 'blog/crear_entrada.html', {'formulario':formulario})
+    formulario = CrearEntradaFormulario()  #si viene por GET por def
+    return render(request, 'blog/crear_entrada.html', {'formulario':formulario})
+
+
+def entradas (request):
+    return render(request, 'blog/entradas.html', {})
 
 def categorias (request):
 
