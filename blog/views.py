@@ -4,7 +4,8 @@ from blog.models import Entrada, Categoria, Etiqueta
 from blog.forms import CrearEntradaFormulario, CrearCategoriaFormulario, CrearEtiquetaFormulario
 
 def blog (request):
-    return render(request, 'blog/blog.html', {})
+    listado_entradas = Entrada.objects.all() #pido todos los registros del modelo
+    return render(request, 'blog/blog.html', {'listado_entradas':listado_entradas})
 
 def crear_entrada (request):
 
@@ -24,7 +25,20 @@ def crear_entrada (request):
 
 
 def entradas (request):
-    return render(request, 'blog/entradas.html', {})
+
+    entrada_a_buscar = request.GET.get('entrada_a_buscar')
+
+    if entrada_a_buscar:
+         listado_entradas = Entrada.objects.filter(titulo__icontains=entrada_a_buscar.lower()) #pido una entrada en particular
+    else:
+        listado_entradas = Entrada.objects.all() #pido todos los registros del modelo
+
+    return render(request, 'blog/entradas.html', {'listado_entradas':listado_entradas})
+
+def entrada (request, id):
+    entrada = Entrada.objects.get(id=id)
+    return render(request, 'blog/entrada.html', {'entrada':entrada})
+
 
 def categorias (request):
 

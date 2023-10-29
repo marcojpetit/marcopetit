@@ -30,56 +30,28 @@
       <h2>Mis escritos</h2>
     </div>
     <div class="row blogs-masonry">
-      
-      <div class="col-lg-4 col-sm-6">
-        <a href="#" class="blog-item">
-          <div class="blog-image">
-            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
-          </div>
-          <div class="blog-content">
-            <span class="cat">Web Design</span>
-            <h4 class="blog-title">Best Way to Design</h4>
-            <div class="blog-date">August 15, 2018</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a href="#" class="blog-item">
-          <div class="blog-image">
-            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
-          </div>
-          <div class="blog-content">
-            <span class="cat">Web Design</span>
-            <h4 class="blog-title">Best Way to Design</h4>
-            <div class="blog-date">August 15, 2018</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a href="#" class="blog-item">
-          <div class="blog-image">
-            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
-          </div>
-          <div class="blog-content">
-            <span class="cat">Web Design</span>
-            <h4 class="blog-title">Best Way to Design</h4>
-            <div class="blog-date">August 15, 2018</div>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <a href="#" class="blog-item">
-          <div class="blog-image">
-            <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
-          </div>
-          <div class="blog-content">
-            <span class="cat">Web Design</span>
-            <h4 class="blog-title">Best Way to Design</h4>
-            <div class="blog-date">August 15, 2018</div>
-          </div>
-        </a>
-      </div>
-
+      {% if listado_entradas %}
+        {% for entrada in listado_entradas %} 
+        <div class="col-lg-4 col-sm-6">
+          <a href="/blog/entrada/{{entrada.id}}" class="blog-item">
+            <div class="blog-image">
+              {% if entrada.imagen_portada %}
+                <img src="{{entrada.imagen_portada.url}}" alt="#">
+              {% else %}
+                <img src="{% static 'img/blog/img-0.jpg' %}" alt="#">
+              {% endif %}
+            </div>
+            <div class="blog-content">
+              <!--<span class="cat">Web Design</span>-->
+              <h4 class="blog-title">{{entrada.titulo | capfirst}}</h4>
+              <div class="blog-date">{{entrada.fecha_publicacion |date:"d/m/y"}}</div>
+            </div>
+          </a>
+        </div>
+        {% endfor %} 
+      {% else %} 
+      <div class="alert alert-warning" role="alert"> No se encontraron entradas</div> 
+      {% endif %}
     <!--end blog sub-section --> 
     {% endblock sub-section %}
 </section>
