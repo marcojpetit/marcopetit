@@ -1,8 +1,9 @@
-{% extends "blog/blog.html" %} 
+{% extends "blog/blog.html" %}
 
-{% block title %} 
-<title>Marco Petit :: Categorías ::</title> 
-{% endblock title %} 
+{% block title %}
+<title>Marco Petit :: Categorias ::</title>
+{% endblock title %}
+
 
 {% block sub-section %}
 <!--blog sub-section -->
@@ -10,18 +11,18 @@
     <span class="icon">
         <i class="lnr lnr-file-add"></i>
     </span>
-    <h2>Categorías</h2>
+    <h2>Categorias</h2>
 </div>
 <!--Form Row-->
 <div class="row mb-70">
     <div class="col-lg-8  offset-lg-2">
         <div class="subheading">
-            <h3>Listado de categorías</h3>
+            <h3>Listado de Categorias</h3>
         </div>
         <div class="boton-crear-menu">
             <!-- Button trigger modal -->
             <button type="button" class="btn-main" data-toggle="modal" data-target="#exampleModal">
-                <i class="lnr lnr-plus-circle"></i> Crear categoría </button>
+                <i class="lnr lnr-plus-circle"></i> Crear categoria</button>
         </div>
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" name="categoria_a_buscar" placeholder="Categoria" aria-label="Search">
@@ -42,12 +43,12 @@
                             <th scope="row">{{categoria.id}}</th>
                             <td>{{categoria.nombre | capfirst}}</td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "categoria_actualizar" categoria.id %}>
                                     <i class="lnr lnr-pencil"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "categoria_eliminar" categoria.id %}>
                                     <i class="lnr lnr-trash"></i>
                                 </a>
                             </td>
@@ -56,7 +57,7 @@
                 </tbody>
             </table> 
         {% else %} 
-            <div class="alert alert-warning" role="alert"> No se encontraron categorías</div> 
+            <div class="alert alert-warning" role="alert"> No se encontraron categorias</div> 
         {% endif %}
     </div>
 </div>
@@ -65,7 +66,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content crear-editar-modal">
             <div class="modal-header">
-                <h3 id="exampleModalLabel">Crear categoría</h3>
+                <h3 id="exampleModalLabel">Crear categoria</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -82,7 +83,7 @@
                             </span>
                             <div class="alert-container col-md-12">{{formulario.nombre.errors}}</div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn-main">Crear Categoría</button>
+                                <button type="submit" class="btn-main">Crear Categoria</button>
                                 <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>
                             </div>
                         </div>

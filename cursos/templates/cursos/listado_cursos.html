@@ -1,0 +1,45 @@
+{% extends "cursos/cursos.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Listado cursos ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Listado cursos</h2>
+        </div>
+        {% if listado_de_cursos %}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th colspan="2" scope="col" class="text-center">Acción</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider"> 
+            {% for curso in listado_de_cursos %}
+                <tr>
+                    <th scope="row">{{curso.id}}</th>
+                    <td><a href={% url "detalle_curso" curso.id %}>{{curso}}</a></td>
+                    <td class="text-center">
+                        <a href={% url "editar_curso" curso.id %}>
+                            <i class="lnr lnr-pencil"></i>
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a href={% url "eliminar_curso" curso.id %}>
+                            <i class="lnr lnr-trash"></i>
+                        </a>
+                    </td>
+                </tr> 
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-warning" role="alert"> No se encontraron entradas</div> 
+        {% endif %}
+<!--blog sub-section -->
+{% endblock sub-section %}

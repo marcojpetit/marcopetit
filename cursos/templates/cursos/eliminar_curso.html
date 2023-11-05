@@ -1,0 +1,21 @@
+{% extends "cursos/cursos.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Eliminar Curso ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Eliminar Curso</h2>
+        </div>
+        <form method="POST">
+            <h3>¿Desea eliminar el curso {{curso}}?</h3>
+            {% csrf_token %} 
+            {{form}}
+            <input type="submit" value="Confirmar">
+        </form>
+<!--blog sub-section -->
+{% endblock sub-section %}

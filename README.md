@@ -10,6 +10,10 @@ El Blog contiene las principales funcioanlidades:
 - herencia de templates y archivos estáticos desde la carpeta principal del proyecto hacia las apps específicas
 - creación de un listado dinámico por cada una de las entradas en la página principal del blog y con acceso único para cada una de las entradas por medio del id en la url
 
+
+La secciòn de cursos tiene:
+-CRUD hecho con las vistas presdeterminadas de Django.
+
 Nota: también cuenta con Diagrama entidad relacion en un xml que se puede abrir en draw.io
 
 Listado de tecnologías usadas:

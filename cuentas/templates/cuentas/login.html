@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Login ::</title>
+{% endblock title %}
+
+{% block section %}
+<section class="blog-section pt-page">
+    <div class="section-container">
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Login</h2>
+        </div>
+        <form action={% url "login" %} method="POST">
+            {% csrf_token %} 
+            <table>
+                {{formulario_de_login}}
+            </table>
+            <input type="submit" value="Iniciar Sesión">
+        </form>
+    </div>
+</section>
+<!--blog sub-section -->
+{% endblock section %}

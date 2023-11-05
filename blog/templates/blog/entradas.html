@@ -38,12 +38,12 @@
                             <th scope="row">{{entrada.id}}</th>
                             <td>{{entrada.titulo | capfirst}}</td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "entrada_actualizar" entrada.id %}>
                                     <i class="lnr lnr-pencil"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "entrada_eliminar" entrada.id %}>
                                     <i class="lnr lnr-trash"></i>
                                 </a>
                             </td>

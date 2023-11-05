@@ -50,7 +50,15 @@
                                 <li><a href={% url "podcast_punto_alternativo" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-mic"></i></span>Podcast</a></li>
                                 <li><a href={% url "blog" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-book"></i></span>Blog</a></li>
                                 <li><a href={% url "cv" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-license"></i></span>Currículum</a></li>
+                                <li><a href={% url "cursos" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-graduation-hat"></i></span>Cursos</a></li>
                                 <li><a href={% url "contacto" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-envelope"></i></span>Contacto</a></li>
+                                {% if not request.user.is_authenticated %}
+                                    <li><a href={% url "login" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-users"></i></span>Iniciar sesión</a></li>
+                                    <li><a href={% url "registro" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-cloud-upload"></i></span>Registrarse</a></li>
+                                {% else %}
+                                    <li><a href='#' class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>{{request.user.username}}</a></li>    
+                                    <li><a href={% url "logout" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-exit"></i></span>Cerrar sesión</a></li>
+                                {% endif %}                                
                             </ul>
                         </nav>
 

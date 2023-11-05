@@ -1,0 +1,22 @@
+{% extends "cursos/cursos.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Detalle Curso ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>{{curso.nombre}}</h2>
+        </div>
+        <ul>
+            <li>Mes: {{curso.mes}}</li>
+            <li>Año: {{curso.anio}}</li>
+            <li>Instituto: {{curso.instituto}}</li>
+            <li>Lugar: {{curso.lugar}}</li>
+            <li>Horas: {{curso.horas}}</li>
+        </ul>
+<!--blog sub-section -->
+{% endblock sub-section %}

@@ -1,0 +1,22 @@
+{% extends "cursos/cursos.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Editar Curso ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Editar curso</h2>
+        </div>
+        <form method="POST">
+            {% csrf_token %} 
+            <table>
+                {{form}}
+            </table>
+            <input type="submit" value="Actualizar">
+        </form>
+<!--blog sub-section -->
+{% endblock sub-section %}

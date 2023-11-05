@@ -1,0 +1,50 @@
+{% extends "base.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Mis cursos ::</title>
+{% endblock title %}
+
+{% block section %}
+<section class="blog-section pt-page">
+    <div class="section-container">
+        {% if request.user.is_authenticated %}
+            <div class="page-heading">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active"><a class="nav-link" href={% url "cursos" %}>Cursos <span class="sr-only">(current)</span></a></li>
+                            <li class="nav-item"><a class="nav-link" href={% url "listado_cursos" %}>Listado Cursos</a></li>
+                            <li class="nav-item"><a class="nav-link" href={% url "crear_curso" %}>Crear Curso</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div> 
+        {% endif %}
+        {% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Mis cursos</h2>
+        </div>
+        {% if listado_de_cursos %}
+            <ul class="experience">
+            {% for curso in listado_de_cursos %}
+                <li>
+                    <div class="content">
+                        <h4>{{curso.nombre}}</h4>
+                        <h5>{{curso.lugar}}, {{curso.anio}} {% if curso.horas %}
+                            - {{curso.horas}} horas{% endif %} </h5>
+                        <p class="info">{{curso.instituto}}</p>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron cursos</p>
+        {% endif %}
+    </div>
+</section>
+<!--blog sub-section -->
+{% endblock sub-section %}
+{% endblock section %}

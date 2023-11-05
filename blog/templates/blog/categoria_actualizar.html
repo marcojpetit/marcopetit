@@ -1,0 +1,42 @@
+{% extends "blog/blog.html" %}
+
+{% block title %}
+<title>Marco Petit :: Actualizar categoria ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+<!--blog sub-section -->
+<div class="page-heading">
+    <span class="icon">
+        <i class="lnr lnr-file-add"></i>
+    </span>
+    <h2>Blog</h2>
+</div>
+<!--Form Row-->
+<div class="row mb-70">
+    <div class="col-lg-8  offset-lg-2">
+        <div class="subheading">
+            <h3>Editar categoria</h3>
+        </div>
+        <!--Form Start-->
+        <form method="POST" enctype="multipart/form-data"> 
+            {% csrf_token %} 
+            <div class="col-md-12 mb-50">
+                <div style="padding-top: 1em;">
+                    <span class="input">
+                        {{formulario.nombre}}
+                        <label class="input__label">{{formulario.nombtr.label_tag}}</label>
+                    </span>
+                    <div class="alert-container col-md-12">{{formulario.nombre.errors}}</div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn-main">Actualizar Categoria</button>
+                <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>
+            </div>
+        </form>
+        <!--Form End-->
+    </div>
+</div>
+<!--end blog sub-section --> 
+{% endblock sub-section %}

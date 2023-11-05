@@ -19,7 +19,7 @@
             <h3>Crear entrada</h3>
         </div>
         <!--Form Start-->
-        <form method="POST" enctype="multipart/form-data"> 
+        <form method="POST" action={% url "entrada_crear" %} enctype="multipart/form-data"> 
             {% csrf_token %} 
             <div class="col-md-12 mb-50">
                 <div style="padding-top: 1em;">

@@ -43,12 +43,12 @@
                             <th scope="row">{{etiqueta.id}}</th>
                             <td>{{etiqueta.nombre | capfirst}}</td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "etiqueta_actualizar" etiqueta.id %}>
                                     <i class="lnr lnr-pencil"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <a href="#">
+                                <a href={% url "etiqueta_eliminar" etiqueta.id %}>
                                     <i class="lnr lnr-trash"></i>
                                 </a>
                             </td>
