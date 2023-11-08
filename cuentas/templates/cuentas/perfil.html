@@ -13,8 +13,9 @@
             </span>
             <h2>Perfil</h2>
         </div>
-        <h3>Datos de la cuenta</h3>
+        
         {% if usuario %} 
+        <h3 class="about">Datos del usuario</h3>
             <table class="table table-dark">
                 <tbody class="table-group-divider"> 
                     <tr>
@@ -36,6 +37,16 @@
                 </tbody>
             </table> 
             <a href={% url "editar_perfil" %} class="btn-main"><i class="lnr lnr-pencil"></i>Editar perfil</a>
+            <a href={% url "editar_clave" %} class="btn-main"><i class="lnr lnr-pencil"></i>Cambiar clave</a>
+        <h3 class="about"  style="margin-top: 2em;">Datos de la cuenta</h3>
+            <table class="table table-dark">
+                <tbody class="table-group-divider"> 
+                    <tr>
+                        <th scope="row">Direccion:</th>
+                        <td>{{direccion}}</td>
+                    </tr> 
+                </tbody>
+            </table> 
         {% else %} 
             <div class="alert alert-warning" role="alert"> No se pudo cargar el usuario</div> 
         {% endif %}

@@ -1,7 +1,13 @@
+#aca arriba van los imports solos o los de django exclusivamente, luego de paquetes isntalados, por ejemplo los de jdango y despues los del proyecto
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth. decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
 from cuentas.forms import MiFormularioDeRegistro, MiFormularioDeEdicion
+from cuentas.models import	DatosCuenta
 
 def login(request):
     formulario = AuthenticationForm()
@@ -12,6 +18,9 @@ def login(request):
             clave = formulario.cleaned_data.get('password')
             user = authenticate(username=usuario, password=clave)
             django_login(request, user)
+            #la siguente linea se agrega despues, como datos extra del usuario
+            DatosCuenta.objects.get_or_create(user=request.user)
+
             return redirect('inicio')
     return render(request, 'cuentas/login.html', {'formulario_de_login':formulario})
 
@@ -24,19 +33,33 @@ def registro(request):
             return redirect('login')
     return render(request, 'cuentas/registro.html', {'formulario_de_registro': formulario}) #si no tiene datos
 
+@login_required
 def perfil(request):
+    datos_cuenta = request.user.datoscuenta
     usuario = request.user
-    return render(request, 'cuentas/perfil.html', {'usuario':usuario})
+    return render(request, 'cuentas/perfil.html', {'usuario':usuario, 'direccion':datos_cuenta.direccion})
 
-
+@login_required
 def editar_perfil(request):
-    formulario = MiFormularioDeEdicion(instance=request.user)
+    
+    datos_cuenta = request.user.datoscuenta
+    formulario = MiFormularioDeEdicion(initial={'direccion':datos_cuenta.direccion}, instance=request.user)
     
     if request.method == 'POST':
             formulario = MiFormularioDeEdicion(request.POST, instance=request.user)
             
             if formulario.is_valid():
+                nueva_direccion = formulario.cleaned_data.get('direccion')
+                
+                if nueva_direccion:
+                    datos_cuenta.direccion = nueva_direccion
+                    datos_cuenta.save()
+                    
                 formulario.save()
                 return redirect('perfil')
             
     return render(request, 'cuentas/editar_perfil.html', {'formulario_de_edicion': formulario})
+
+class CambioClave(PasswordChangeView):
+    template_name = 'cuentas/editar_clave.html'
+    success_url = reverse_lazy('perfil')

@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Cambiar clave ::</title>
+{% endblock title %}
+
+{% block section %}
+<section class="blog-section pt-page">
+    <div class="section-container">
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Cambiar clave</h2>
+        </div>
+        <form action={% url "editar_clave" %} method="POST">
+            {% csrf_token %} 
+            <table>
+                {{form}}
+            </table>
+            <input type="submit" value="Cambiar clave">
+        </form>
+    </div>
+</section>
+<!--blog sub-section -->
+{% endblock section %}
