@@ -1,0 +1,45 @@
+{% extends "base.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Perfil ::</title>
+{% endblock title %}
+
+{% block section %}
+<section class="blog-section pt-page">
+    <div class="section-container">
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-graduation-hat"></i>
+            </span>
+            <h2>Perfil</h2>
+        </div>
+        <h3>Datos de la cuenta</h3>
+        {% if usuario %} 
+            <table class="table table-dark">
+                <tbody class="table-group-divider"> 
+                    <tr>
+                        <th scope="row">Usuario:</th>
+                        <td>{{usuario.username}}</td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">Nombre:</th>
+                        <td>{{usuario.first_name}}</td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">Apellido:</th>
+                        <td>{{usuario.last_name}}</td>
+                    </tr> 
+                    <tr>
+                        <th scope="row">Email:</th>
+                        <td>{{usuario.email}}</td>
+                    </tr> 
+                </tbody>
+            </table> 
+            <a href={% url "editar_perfil" %} class="btn-main"><i class="lnr lnr-pencil"></i>Editar perfil</a>
+        {% else %} 
+            <div class="alert alert-warning" role="alert"> No se pudo cargar el usuario</div> 
+        {% endif %}
+    </div>
+</section>
+<!--blog sub-section -->
+{% endblock section %}

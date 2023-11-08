@@ -6,7 +6,7 @@ class Categoria(models.Model):
 class Curso(models.Model):
     mes = models.IntegerField()
     anio = models.IntegerField()
-    nombre = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=70)
     instituto = models.CharField(max_length=100)
     lugar = models.CharField(max_length=100)
     horas = models.IntegerField()

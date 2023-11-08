@@ -56,7 +56,7 @@
                                     <li><a href={% url "login" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-users"></i></span>Iniciar sesión</a></li>
                                     <li><a href={% url "registro" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-cloud-upload"></i></span>Registrarse</a></li>
                                 {% else %}
-                                    <li><a href='#' class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>{{request.user.username}}</a></li>    
+                                    <li><a href={% url "perfil" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-user"></i></span>{{request.user.username}}</a></li>    
                                     <li><a href={% url "logout" %} class="pt-link"><span class="nav-menu-icon"><i class="lnr lnr-exit"></i></span>Cerrar sesión</a></li>
                                 {% endif %}                                
                             </ul>

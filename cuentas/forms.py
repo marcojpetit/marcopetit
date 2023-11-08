@@ -1,5 +1,5 @@
 from django import forms 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 
 class MiFormularioDeRegistro(UserCreationForm):
@@ -12,3 +12,11 @@ class MiFormularioDeRegistro(UserCreationForm):
         model = User #esto usa el modelo directamente y nos sirve para indicarle que campos del modelo queremos cargar. En este caso usamos uno de django pero puede ser por ejemplo para cursos
         fields = ['username', 'email', 'password1', 'password2']
         help_texts = {key: '' for key in fields}
+class MiFormularioDeEdicion(UserChangeForm):
+    email = forms.EmailField(label='Email', required=False)
+    password = None
+    first_name = forms.CharField(label='Nombre', required=False)
+    last_name = forms.CharField(label='Apellido', required=False)
+    class Meta:
+        model = User 
+        fields = ['email', 'first_name', 'last_name']

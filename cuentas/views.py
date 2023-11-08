@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.forms import AuthenticationForm
-from cuentas.forms import MiFormularioDeRegistro
+from cuentas.forms import MiFormularioDeRegistro, MiFormularioDeEdicion
 
 def login(request):
     formulario = AuthenticationForm()
@@ -23,3 +23,20 @@ def registro(request):
             formulario.save()#Es posible guardar el formulario poraque ya está relacionado con el modelo
             return redirect('login')
     return render(request, 'cuentas/registro.html', {'formulario_de_registro': formulario}) #si no tiene datos
+
+def perfil(request):
+    usuario = request.user
+    return render(request, 'cuentas/perfil.html', {'usuario':usuario})
+
+
+def editar_perfil(request):
+    formulario = MiFormularioDeEdicion(instance=request.user)
+    
+    if request.method == 'POST':
+            formulario = MiFormularioDeEdicion(request.POST, instance=request.user)
+            
+            if formulario.is_valid():
+                formulario.save()
+                return redirect('perfil')
+            
+    return render(request, 'cuentas/editar_perfil.html', {'formulario_de_edicion': formulario})
