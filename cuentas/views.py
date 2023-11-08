@@ -43,18 +43,22 @@ def perfil(request):
 def editar_perfil(request):
     
     datos_cuenta = request.user.datoscuenta
-    formulario = MiFormularioDeEdicion(initial={'direccion':datos_cuenta.direccion}, instance=request.user)
+    formulario = MiFormularioDeEdicion(initial={'direccion':datos_cuenta.direccion, 'avatar':datos_cuenta.avatar}, instance=request.user)
     
     if request.method == 'POST':
-            formulario = MiFormularioDeEdicion(request.POST, instance=request.user)
+            formulario = MiFormularioDeEdicion(request.POST, request.FILES, instance=request.user)
             
             if formulario.is_valid():
                 nueva_direccion = formulario.cleaned_data.get('direccion')
-                
+                nuevo_avatar = formulario.cleaned_data.get('avatar')
+
                 if nueva_direccion:
                     datos_cuenta.direccion = nueva_direccion
-                    datos_cuenta.save()
                     
+                if nuevo_avatar:
+                    datos_cuenta.avatar = nuevo_avatar
+                    
+                datos_cuenta.save()
                 formulario.save()
                 return redirect('perfil')
             

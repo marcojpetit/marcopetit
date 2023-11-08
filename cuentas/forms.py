@@ -18,6 +18,7 @@ class MiFormularioDeEdicion(UserChangeForm):
     first_name = forms.CharField(label='Nombre', required=False)
     last_name = forms.CharField(label='Apellido', required=False)
     direccion = forms.CharField(max_length=100, label='Dirección', required=False, widget=forms.Textarea)
+    avatar = forms.ImageField(required=False)
     class Meta:
         model = User 
-        fields = ['email', 'first_name', 'last_name', 'direccion']
+        fields = ['email', 'first_name', 'last_name', 'direccion', 'avatar']

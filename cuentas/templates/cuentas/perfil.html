@@ -45,6 +45,14 @@
                         <th scope="row">Direccion:</th>
                         <td>{{direccion}}</td>
                     </tr> 
+                    {% if request.user.datoscuenta.avatar  %}
+                    <tr>
+                        <th scope="row">Avatar:</th>
+                        <td>
+                            <img src="{{request.user.datoscuenta.avatar.url}}" class="rounded-circle border d-flex justify-content-center align-items-center" style="width:100px;height:100px" alt="Avatar">
+                       </td>
+                    </tr> 
+                    {% endif %}
                 </tbody>
             </table> 
         {% else %} 

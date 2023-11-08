@@ -12,7 +12,7 @@ class Entrada(models.Model):
     contenido = models.TextField()
     id_autor = models.IntegerField()
     fecha_publicacion = models.DateTimeField()
-    imagen_portada = models.ImageField(upload_to="images", null=True)
+    imagen_portada = models.ImageField(upload_to="entradas", null=True, blank=True)
 
 class Entrada_etiqueta(models.Model):
     id_entrada = models.ForeignKey(Entrada, on_delete=models.CASCADE)
