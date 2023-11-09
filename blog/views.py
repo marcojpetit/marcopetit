@@ -155,4 +155,3 @@ def etiqueta_eliminar(request, id):
     etiqueta_a_eliminar = Etiqueta.objects.get(id=id)
     etiqueta_a_eliminar.delete()
     return redirect("etiquetas")
-
