@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth. decorators import login_required
+from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Entrada, Categoria, Etiqueta
+from django.urls import reverse_lazy
+
 from blog.forms import CrearEntradaFormulario, CrearCategoriaFormulario, CrearEtiquetaFormulario, ActualizarEntradaFormulario, ActualizarEtiquetaFormulario, ActualizarCategoriaFormulario
 
 def blog (request):
@@ -10,20 +14,18 @@ def blog (request):
 
 @login_required
 def entrada_crear (request):
+    formulario = CrearEntradaFormulario()  #si viene por GET por def
     if request.method == 'POST': #si viene por POST crea el formulario con los datos
         formulario = CrearEntradaFormulario(request.POST, request.FILES)
         if formulario.is_valid(): #si el formulario tiene datos validos, crea y redirecciona a categorias
+            id_categoria = formulario.cleaned_data.get('id_categoria')
             titulo = formulario.cleaned_data.get('titulo')
             contenido = formulario.cleaned_data.get('contenido')
             imagen_portada = formulario.cleaned_data.get('imagen_portada')
-            entrada = Entrada(id_categoria=1, titulo=titulo.lower(), contenido=contenido, id_autor=1, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
+            entrada = Entrada(id_categoria=id_categoria, titulo=titulo.lower(), contenido=contenido, id_autor=1, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
             entrada.save()
             return redirect('entradas')
-        else:#si el formulario no tiene datos validos, regresa al formulario y muestra los errores
-            return render(request, 'blog/entrada_crear.html', {'formulario':formulario})
-    formulario = CrearEntradaFormulario()  #si viene por GET por def
     return render(request, 'blog/entrada_crear.html', {'formulario':formulario})
-
 
 def entradas (request):
     entrada_a_buscar = request.GET.get('entrada_a_buscar')
