@@ -51,13 +51,18 @@
                     </span>
                     <div class="alert-container col-md-12">{{formulario.contenido.errors}}</div>
                 </div>
-
                 <span class="input" style="padding-top: 1em;">
                     {{formulario.imagen_portada}}
                 </span>
                 <div class="alert-container col-md-12">{{formulario.imagen_portada.errors}}</div>
             </div>
-            
+            <div style="padding-bottom: 1em;">
+                <span class="input">
+                    {{formulario.etiquetas}}
+                    <label class="input__label">{{formulario.etiquetas.label_tag}}</label>
+                </span>
+                <div class="alert-container col-md-12">{{formulario.etiquetas.errors}}</div>
+            </div>
             <div class="col-md-12 text-center">
                 <button type="submit" class="btn-main">Actualizar Entrada</button>
                 <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>

@@ -57,7 +57,13 @@
                 </span>
                 <div class="alert-container col-md-12">{{formulario.imagen_portada.errors}}</div>
             </div>
-            
+            <div style="padding-bottom: 1em;">
+                <span class="input">
+                    {{formulario.etiquetas}}
+                    <label class="input__label">{{formulario.etiquetas.label_tag}}</label>
+                </span>
+                <div class="alert-container col-md-12">{{formulario.etiquetas.errors}}</div>
+            </div>
             <div class="col-md-12 text-center">
                 <button type="submit" class="btn-main">Crear Entrada</button>
                 <button type="button" class="btn-main" data-dismiss="modal" aria-label="Close">Cancelar</button>

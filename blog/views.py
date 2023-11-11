@@ -26,8 +26,10 @@ def entrada_crear (request):
             contenido = formulario.cleaned_data.get('contenido')
             id_autor = User.objects.get(id=request.user.id)   
             imagen_portada = formulario.cleaned_data.get('imagen_portada')
+            etiquetas = formulario.cleaned_data.get('etiquetas')
             entrada = Entrada(id_categoria=id_categoria, titulo=titulo.lower(), sub_titulo=sub_titulo.lower(), contenido=contenido, id_autor=id_autor, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
             entrada.save()
+            entrada.etiquetas.set(etiquetas)
             return redirect('entradas')
     return render(request, 'blog/entrada_crear.html', {'formulario':formulario})
 
@@ -53,6 +55,8 @@ def entrada_eliminar(request, id):
 @login_required
 def entrada_actualizar(request, id):
     entrada_a_actualizar = Entrada.objects.get(id=id)
+    
+    formulario = ActualizarEntradaFormulario(initial={'titulo': entrada_a_actualizar.titulo, 'contenido':entrada_a_actualizar.contenido, 'imagen_portada': entrada_a_actualizar.imagen_portada, 'etiquetas':entrada_a_actualizar.etiquetas.all()})
     if request.method == "POST":
         formulario = ActualizarEntradaFormulario(request.POST)
         if formulario.is_valid():
@@ -63,13 +67,13 @@ def entrada_actualizar(request, id):
             entrada_a_actualizar.sub_titulo = info_nueva.get('sub_titulo')
             entrada_a_actualizar.contenido = info_nueva.get('contenido')
             entrada_a_actualizar.imagen_portada = info_nueva.get('imagen_portada')
+            etiquetas = info_nueva.get('etiquetas')
             entrada_a_actualizar.save()
+            entrada_a_actualizar.etiquetas.set(etiquetas)
             #return redirect('entradas') Esto es si quiero que vaya al listado de entradas, pero yo lo cambie para que me vaya a la entrada actualizada
             entrada = Entrada.objects.get(id=id)
-            return render(request, 'blog/entrada.html', {'entrada':entrada})
-        return render(request, 'blog/entrada_actualizar.html', {'formulario':formulario})
+            return render(request, 'blog/entrada.html', {'entrada':entrada})    
     
-    formulario = ActualizarEntradaFormulario(initial={'titulo': entrada_a_actualizar.titulo, 'contenido':entrada_a_actualizar.contenido, 'imagen_portada': entrada_a_actualizar.imagen_portada})
     return render(request, 'blog/entrada_actualizar.html', {'formulario':formulario})
 
 

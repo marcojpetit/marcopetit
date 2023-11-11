@@ -21,7 +21,5 @@ class Entrada(models.Model):
     id_autor = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha_publicacion = models.DateTimeField()
     imagen_portada = models.ImageField(upload_to="entradas", null=True, blank=True)
+    etiquetas = models.ManyToManyField(Etiqueta)
 
-class Entrada_etiqueta(models.Model):
-    id_entrada = models.ForeignKey(Entrada, on_delete=models.CASCADE)
-    id_etiqueta = models.ForeignKey(Etiqueta, on_delete=models.PROTECT) 
