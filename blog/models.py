@@ -14,7 +14,7 @@ class Etiqueta(models.Model):
         return self.nombre
 
 class Entrada(models.Model):
-    id_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
+    id_categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, null=True)
     titulo = models.CharField(max_length=150)
     sub_titulo = models.CharField(max_length=150, null=True)
     contenido = RichTextField()

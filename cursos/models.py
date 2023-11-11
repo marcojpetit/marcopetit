@@ -1,8 +1,5 @@
 from django.db import models
 
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=30)
-
 class Curso(models.Model):
     mes = models.IntegerField()
     anio = models.IntegerField()

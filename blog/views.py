@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth. decorators import login_required
-from django.views.generic.edit import CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Entrada, Categoria, Etiqueta
 from django.contrib.auth.models import User
-
-from django.urls import reverse_lazy
+from django.db.models import ProtectedError
 
 from blog.forms import CrearEntradaFormulario, CrearCategoriaFormulario, CrearEtiquetaFormulario, ActualizarEntradaFormulario, ActualizarEtiquetaFormulario, ActualizarCategoriaFormulario
 
@@ -119,9 +116,13 @@ def categoria_actualizar(request,id):
 
 @login_required
 def categoria_eliminar(request, id):
-    categoria_a_eliminar = Categoria.objects.get(id=id)
-    categoria_a_eliminar.delete()
-    return redirect("categorias")
+    try:
+        categoria_a_eliminar = Categoria.objects.get(id=id)
+        categoria_a_eliminar.delete()
+        return redirect("categorias")
+    except ProtectedError as e:
+        return render(request, 'blog/categoria_eliminar_error.html', {'e':e})
+
 
 
 @login_required

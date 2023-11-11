@@ -9,19 +9,20 @@
     <div class="section-container">
         <div class="page-heading">
             <span class="icon">
-                <i class="lnr lnr-graduation-hat"></i>
+                <i class="lnr lnr-users"></i>
             </span>
             <h2>Cambiar clave</h2>
         </div>
-        <form action={% url "editar_clave" %} method="POST">
+        <form action={% url "editar_clave" %} method="POST" style="margin-bottom: 2em;" >
             {% csrf_token %} 
             <table>
                 {{form}}
             </table>
             <button type="submit" class="btn-main">Cambiar clave</button>
             <button type="reset" class="btn-main">Borrar</button>
+    </form>
+    <a href={% url "perfil" %}><button type="button" class="btn-main">Regresar</button></a>
 
-        </form>
     </div>
 </section>
 <!--blog sub-section -->

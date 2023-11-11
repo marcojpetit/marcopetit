@@ -1,0 +1,26 @@
+{% extends "blog/blog.html" %}
+
+{% block title %}
+<title>Marco Petit :: Actualizar etiqueta ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+<!--blog sub-section -->
+<div class="page-heading">
+    <span class="icon">
+        <i class="lnr lnr-file-add"></i>
+    </span>
+    <h2>Blog</h2>
+</div>
+<!--Form Row-->
+<div class="row mb-70">
+    <div class="col-lg-8  offset-lg-2">
+        <div class="subheading">
+            <h3>Editar etiqueta</h3>
+        </div>
+        <h4>No se puede eliminar la categoría porque hay entradas asociadas a ésta</h4>
+        <a href={% url "categorias" %}><button type="button" class="btn-main">Regresar</button></a>
+    </div>
+</div>
+<!--end blog sub-section --> 
+{% endblock sub-section %}
