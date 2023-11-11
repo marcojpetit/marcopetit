@@ -12,6 +12,7 @@ class CrearEtiquetaFormulario(forms.Form):
 class BaseEntradaFormulario(forms.Form):
     id_categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), empty_label=None, label="Por favor seleccione una categoría", widget=forms.Select(attrs={'class': "input__field cf-validate"}))
     titulo = forms.CharField(label="Título de la entrada", max_length=150, widget=forms.TextInput(attrs={'class': "input__field cf-validate"}))
+    sub_titulo = forms.CharField(required=False, label="Subtítulo de la entrada", max_length=150, widget=forms.TextInput(attrs={'class': "input__field cf-validate"}))
     contenido = RichTextFormField(label="Escribir el contenido aquí", widget=forms.Textarea(attrs={'class': "input__field cf-validate"}))
     imagen_portada = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': "input__field cf-validate"}))
     

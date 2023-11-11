@@ -4,6 +4,8 @@ from django.contrib.auth. decorators import login_required
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.models import Entrada, Categoria, Etiqueta
+from django.contrib.auth.models import User
+
 from django.urls import reverse_lazy
 
 from blog.forms import CrearEntradaFormulario, CrearCategoriaFormulario, CrearEtiquetaFormulario, ActualizarEntradaFormulario, ActualizarEtiquetaFormulario, ActualizarCategoriaFormulario
@@ -20,9 +22,11 @@ def entrada_crear (request):
         if formulario.is_valid(): #si el formulario tiene datos validos, crea y redirecciona a categorias
             id_categoria = formulario.cleaned_data.get('id_categoria')
             titulo = formulario.cleaned_data.get('titulo')
+            sub_titulo = formulario.cleaned_data.get('sub_titulo')
             contenido = formulario.cleaned_data.get('contenido')
+            id_autor = User.objects.get(id=request.user.id)   
             imagen_portada = formulario.cleaned_data.get('imagen_portada')
-            entrada = Entrada(id_categoria=id_categoria, titulo=titulo.lower(), contenido=contenido, id_autor=1, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
+            entrada = Entrada(id_categoria=id_categoria, titulo=titulo.lower(), sub_titulo=sub_titulo.lower(), contenido=contenido, id_autor=id_autor, fecha_publicacion=datetime.now(), imagen_portada=imagen_portada)
             entrada.save()
             return redirect('entradas')
     return render(request, 'blog/entrada_crear.html', {'formulario':formulario})
@@ -37,7 +41,8 @@ def entradas (request):
 
 def entrada (request, id):
     entrada = Entrada.objects.get(id=id)
-    return render(request, 'blog/entrada.html', {'entrada':entrada})
+    autor = User.objects.get(id=entrada.id_autor.id)
+    return render(request, 'blog/entrada.html', {'entrada':entrada, 'autor':autor,})
 
 @login_required
 def entrada_eliminar(request, id):
@@ -52,7 +57,10 @@ def entrada_actualizar(request, id):
         formulario = ActualizarEntradaFormulario(request.POST)
         if formulario.is_valid():
             info_nueva = formulario.cleaned_data
+            entrada_a_actualizar.id_categoria = formulario.cleaned_data.get('id_categoria')
             entrada_a_actualizar.titulo = info_nueva.get('titulo')
+            entrada_a_actualizar.titulo = info_nueva.get('titulo')
+            entrada_a_actualizar.sub_titulo = info_nueva.get('sub_titulo')
             entrada_a_actualizar.contenido = info_nueva.get('contenido')
             entrada_a_actualizar.imagen_portada = info_nueva.get('imagen_portada')
             entrada_a_actualizar.save()

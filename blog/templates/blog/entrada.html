@@ -17,7 +17,9 @@
       <div class="blog-heading col-md-8 offset-md-2">
         <!--<span class="cat">Fashion</span>-->
         <h1>{{entrada.titulo | capfirst}}</h1>
-        <span class="blog-date">{{entrada.fecha_publicacion |date:"d/m/y"}}</span>
+        {% if entrada.sub_titulo  %}
+          <h2>{{entrada.sub_titulo | capfirst}}</h2>
+        {% endif %}
       </div>      
       <!--Blog Heading Start-->
         <!--Blog Content Start-->
@@ -26,6 +28,9 @@
         </div>
         <!--Blog Content End-->
     </div>
+    <h3 class="cat">{{entrada.id_categoria}}</h3>
+    <h4>{{autor  | capfirst}}</h4>
+    <h5>{{entrada.fecha_publicacion |date:"d/m/y"}}</h5>
 </div>
   {% else %} 
     <div class="alert alert-warning" role="alert"> No se encontraron registros</div> 

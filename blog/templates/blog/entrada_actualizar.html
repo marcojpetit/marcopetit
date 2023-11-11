@@ -22,6 +22,13 @@
         <form method="POST" enctype="multipart/form-data"> 
             {% csrf_token %} 
             <div class="col-md-12 mb-50">
+                <div style="padding-bottom: 2em;">
+                    <span class="input">
+                        {{formulario.id_categoria}}
+                        <label class="input__label">{{formulario.id_categoria.label_tag}}</label>
+                    </span>
+                    <div class="alert-container col-md-12">{{formulario.id_categoria.errors}}</div>
+                </div>
                 <div style="padding-top: 1em;">
                     <span class="input">
                         {{formulario.titulo}}
@@ -31,8 +38,15 @@
                 </div>
                 <div style="padding-top: 2em;">
                     <span class="input">
+                        {{formulario.sub_titulo}}
+                        <label class="input__label">{{formulario.sub_titulo.label_tag}}</label>
+                    </span>
+                    <div class="alert-container col-md-12">{{formulario.sub_titulo.errors}}</div>
+                </div>
+                <div style="padding-top: 2em;">
+                    <span class="input">
                         {{formulario.media}}
-                        {{formulario.contenido}} 
+                        {{formulario.contenido}}
                         <label class="input__label">{{formulario.contenido.label_tag}}</label>
                     </span>
                     <div class="alert-container col-md-12">{{formulario.contenido.errors}}</div>
