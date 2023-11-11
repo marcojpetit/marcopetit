@@ -4,10 +4,10 @@ from ckeditor.fields import RichTextField
 
 
 class Mensaje(models.Model):
-    id_remitente = models.ForeignKey(User, on_delete=models.CASCADE)
-    #id_destinatario = models.ForeignKey(User, on_delete=models.CASCADE)
+    emisor = models.ForeignKey(User, related_name='emisor', on_delete=models.CASCADE)
+    destinatario = models.ForeignKey(User, related_name='destinatario', on_delete=models.CASCADE)
     contenido = RichTextField()
-    fecha_creacion = models.DateTimeField(auto_now_add=True)   
+    fecha_creacion = models.DateField(auto_now_add=True)   
     
     def __str__(self):
-        return f'{self.id_remitente} para {self.id_remitente} - {self.fecha_creacion}'
+        return f'De: {self.emisor} - {self.fecha_creacion}'

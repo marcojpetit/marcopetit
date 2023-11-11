@@ -67,6 +67,9 @@ label{
     z-index: 1!important;
 }
 
+.check_label_marco{
+    top: -30px!important;
+}
 /*============ 1. Body and Core Css ============*/
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700,900");
 @import url("https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900");

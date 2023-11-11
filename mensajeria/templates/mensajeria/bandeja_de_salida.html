@@ -1,0 +1,37 @@
+{% extends "mensajeria/mensajeria.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Bandeja de salida ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-envelope"></i>
+            </span>
+            <h2>Bandeja de salida</h2>
+        </div>
+        {% if listado_de_mensajes_enviados %}
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th colspan="2" scope="col" class="text-center">Mensaje</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider"> 
+            {% for mensaje in listado_de_mensajes_enviados %}
+                <tr>
+                    <td><a href={% url "detalle_mensaje" mensaje.id %}>{{mensaje | capfirst}}</a></td>
+                    <td class="text-center">
+                        <a href={% url "mensaje_eliminar" mensaje.id %}>
+                            <i class="lnr lnr-trash"></i>
+                        </a>
+                    </td>
+                </tr> 
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-warning" role="alert">Buzón vacío</div> 
+        {% endif %}
+<!--blog sub-section -->
+{% endblock sub-section %}

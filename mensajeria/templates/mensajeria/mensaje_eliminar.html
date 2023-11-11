@@ -1,0 +1,21 @@
+{% extends "mensajeria/mensajeria.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Eliminar Mensaje ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-envelope"></i>
+            </span>
+            <h2>Eliminar Mensaje</h2>
+        </div>
+        <form method="POST">
+            <h3>¿Desea eliminar el mensaje {{mensaje | capfirst}}?</h3>
+            {% csrf_token %} 
+            {{form}}
+            <input type="submit" value="Confirmar">
+        </form>
+<!--blog sub-section -->
+{% endblock sub-section %}

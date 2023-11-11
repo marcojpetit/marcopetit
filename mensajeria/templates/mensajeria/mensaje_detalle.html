@@ -1,0 +1,19 @@
+{% extends "mensajeria/mensajeria.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Detalle mensaje ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-envelope"></i>
+            </span>
+            <h2>De: {{mensaje.emisor | capfirst}}</h2>
+        </div>
+        <ul>
+            <li>Enviado: {{mensaje.fecha_creacion}}</li>
+            <li>{{mensaje.contenido | safe}}</li>
+        </ul>
+<!--blog sub-section -->
+{% endblock sub-section %}

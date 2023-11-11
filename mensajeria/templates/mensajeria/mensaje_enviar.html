@@ -1,0 +1,23 @@
+{% extends "mensajeria/mensajeria.html" %} 
+
+{% block title %}
+<title>Marco Petit :: Enviar mensaje ::</title>
+{% endblock title %}
+
+{% block sub-section %}
+        <div class="page-heading">
+            <span class="icon">
+                <i class="lnr lnr-envelope"></i>
+            </span>
+            <h2>Nuevo mensaje</h2>
+        </div>
+        <form action={% url "mensaje_enviar" %} method="POST">
+            {% csrf_token %} 
+            <table>
+                {{form.media}}
+                {{form}}
+            </table>
+            <input type="submit" value="Enviar">
+        </form>
+<!--blog sub-section -->
+{% endblock sub-section %}
