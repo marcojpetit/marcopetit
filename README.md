@@ -2,6 +2,9 @@
 Personal website with Blog made in Django
 Este es un sitio web personal hecho para presentar como proyecto final en el curso de Django de CoderHouse el cual se basa en un sitio web personal y un blog de uso personal.
 
+
+En la carpeta documetns podràn encontrar el video explicativo y también cuun Diagrama entidad relacion en un xml que se puede abrir en draw.io
+
 Esta web consta de las siguientes páginas:
 - Inicio
 - Sobre mi
@@ -62,4 +65,4 @@ Listado de tecnologías usadas:
 - Django
 - Boostrap
 
-Nota: también cuenta con Diagrama entidad relacion en un xml que se puede abrir en draw.io
+
