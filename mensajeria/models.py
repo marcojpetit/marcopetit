@@ -10,4 +10,4 @@ class Mensaje(models.Model):
     fecha_creacion = models.DateField(auto_now_add=True)   
     
     def __str__(self):
-        return f'De: {self.emisor} - {self.fecha_creacion}'
+        return f'De: {self.emisor}  Para: {self.destinatario} - {self.fecha_creacion}'

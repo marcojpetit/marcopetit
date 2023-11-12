@@ -28,7 +28,7 @@
         </div>
         <!--Blog Content End-->
     </div>
-    <h3 class="cat">{{entrada.id_categoria}}</h3>
+    <h3 class="cat">{{entrada.id_categoria | capfirst}}</h3>
     <h4>{{autor  | capfirst}}</h4>
     <h5>{{entrada.fecha_publicacion |date:"d/m/y"}}</h5>
 </div>

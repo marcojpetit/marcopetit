@@ -52,7 +52,10 @@
                     <div class="alert-container col-md-12">{{formulario.contenido.errors}}</div>
                 </div>
                 <span class="input" style="padding-top: 1em;">
-                    {{formulario.imagen_portada}}
+                    {{formulario.imagen_portada}}        
+                    {% if formulario.initial.imagen_portada %}
+                        <p>Imagen actual: {{ formulario.initial.imagen_portada.name }}</p>
+                    {% endif %}
                 </span>
                 <div class="alert-container col-md-12">{{formulario.imagen_portada.errors}}</div>
             </div>

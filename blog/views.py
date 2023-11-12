@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from django.contrib.auth. decorators import login_required
 from blog.models import Entrada, Categoria, Etiqueta
@@ -53,17 +53,18 @@ def entrada_eliminar(request, id):
 def entrada_actualizar(request, id):
     entrada_a_actualizar = Entrada.objects.get(id=id)
     
-    formulario = ActualizarEntradaFormulario(initial={'titulo': entrada_a_actualizar.titulo, 'contenido':entrada_a_actualizar.contenido, 'imagen_portada': entrada_a_actualizar.imagen_portada, 'etiquetas':entrada_a_actualizar.etiquetas.all()})
+    formulario = ActualizarEntradaFormulario(initial={'id_categoria':entrada_a_actualizar.id_categoria, 'titulo': entrada_a_actualizar.titulo, 'sub_titulo': entrada_a_actualizar.sub_titulo, 'contenido':entrada_a_actualizar.contenido, 'imagen_portada': entrada_a_actualizar.imagen_portada, 'etiquetas':entrada_a_actualizar.etiquetas.all()})
     if request.method == "POST":
-        formulario = ActualizarEntradaFormulario(request.POST)
+        formulario = ActualizarEntradaFormulario(request.POST, request.FILES)
         if formulario.is_valid():
             info_nueva = formulario.cleaned_data
-            entrada_a_actualizar.id_categoria = formulario.cleaned_data.get('id_categoria')
-            entrada_a_actualizar.titulo = info_nueva.get('titulo')
+            entrada_a_actualizar.id_categoria = info_nueva.get('id_categoria')
             entrada_a_actualizar.titulo = info_nueva.get('titulo')
             entrada_a_actualizar.sub_titulo = info_nueva.get('sub_titulo')
             entrada_a_actualizar.contenido = info_nueva.get('contenido')
-            entrada_a_actualizar.imagen_portada = info_nueva.get('imagen_portada')
+            if info_nueva.get('imagen_portada'):
+                entrada_a_actualizar.imagen_portada = info_nueva.get('imagen_portada')
+            
             etiquetas = info_nueva.get('etiquetas')
             entrada_a_actualizar.save()
             entrada_a_actualizar.etiquetas.set(etiquetas)
@@ -72,7 +73,6 @@ def entrada_actualizar(request, id):
             return render(request, 'blog/entrada.html', {'entrada':entrada})    
     
     return render(request, 'blog/entrada_actualizar.html', {'formulario':formulario})
-
 
 @login_required
 def categorias(request):
